@@ -22,3 +22,7 @@ RUN apt-get install autoconf automake pkg-config libtool make python-docutils -y
     && ./configure  \
     && make \
     && make install \
+    && apt-get remove curl -y \
+    && dpkg -r git && apt-get autoremove -y \ 
+    && apt-get purge -y $(dpkg --list |grep '^rc' |awk '{print $2}')
+
